@@ -1,0 +1,27 @@
+/**
+现在就等福特！Yeah
+ */
+syntax="proto3";
+import "laptop_message.proto";
+
+/**
+创建请求
+ */
+message CreateLaptopRequest{
+  Laptop laptop =1;
+}
+/**
+创建响应
+ */
+message CreateLaptopResponse{
+  string id=1;
+}
+/**
+laptop相关服务
+ */
+service LaptopService{
+  /**
+  包括请求参数和返回参数
+   */
+  rpc createLaptop(CreateLaptopRequest) returns (CreateLaptopResponse){};
+}
