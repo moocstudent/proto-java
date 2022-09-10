@@ -1,0 +1,19 @@
+/**
+在异构环境中，比如Go调用java
+各个对应接收的bean或者说json转换的bean
+需要在各个语言中进行分别实现
+其实已经是多一步的操作
+而在proto中已经可以帮忙生成stub代码
+但是实际上每个不同programming language的语言
+还是需要单独去写不同但bean实现去接收对应数据
+不过也不妨碍protobuf二进制分帧的数据交换的快速
+ */
+syntax="proto3";
+import "memory_message.proto";
+
+message Filter{
+  double max_price_usd=1;
+  uint32 min_cpu_cores=2;
+  double min_cpu_ghz=3;
+  Memory min_ram =4;
+}

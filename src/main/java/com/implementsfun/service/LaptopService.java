@@ -1,8 +1,9 @@
 package com.implementsfun.service;
 
+import com.implementsfun.protoj.FilterMessage.*;
 import com.implementsfun.protoj.LaptopMessage.*;
 import com.implementsfun.protoj.LaptopServiceGrpc;
-import com.implementsfun.protoj.LaptopServiceOuterClass;
+import com.implementsfun.protoj.LaptopServiceOuterClass.*;
 import io.grpc.Context;
 import io.grpc.Status;
 import io.grpc.stub.StreamObserver;
@@ -21,8 +22,9 @@ public class LaptopService extends LaptopServiceGrpc.LaptopServiceImplBase {
         this.store = store;
     }
 
-    public void createLaptop(LaptopServiceOuterClass.CreateLaptopRequest request,
-                             StreamObserver<LaptopServiceOuterClass.CreateLaptopResponse> responseObserver){
+    @Override
+    public void createLaptop(CreateLaptopRequest request,
+                             StreamObserver<CreateLaptopResponse> responseObserver){
         Laptop laptop=request.getLaptop();
         String id = laptop.getId();
         logger.info("get a create-laptop request with ID:"+id);
@@ -66,8 +68,8 @@ public class LaptopService extends LaptopServiceGrpc.LaptopServiceImplBase {
             );
             return;
         }
-        LaptopServiceOuterClass.CreateLaptopResponse response =
-                LaptopServiceOuterClass.CreateLaptopResponse.newBuilder().setId(other.getId()).build();
+        CreateLaptopResponse response =
+                CreateLaptopResponse.newBuilder().setId(other.getId()).build();
         responseObserver.onNext(response);
         responseObserver.onCompleted();
 
@@ -85,6 +87,21 @@ public class LaptopService extends LaptopServiceGrpc.LaptopServiceImplBase {
          * 不然太麻烦了
          * 比如上面CreateLaptopResponse和createLaptop方法是区分到
          */
+    }
+
+    public void searchLaptop(SearchLaptopRequest request,
+                             StreamObserver<SearchLaptopResponse> responseObserver){
+        Filter filter = request.getFilter();
+        logger.info("got a search-laptop request with filter:\t "+filter);
+        store.search(Context.current(), filter, laptop -> {
+            logger.info("found laptop with ID: "+laptop.getId());
+            SearchLaptopResponse response=
+                    SearchLaptopResponse.newBuilder().setLaptop(laptop).build();
+            responseObserver.onNext(response);
+        });
+        //to tell client there won't be any more responses
+        responseObserver.onCompleted();
+        logger.info("search laptop completed");
     }
 
 }

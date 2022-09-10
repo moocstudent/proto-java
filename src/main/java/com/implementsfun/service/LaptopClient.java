@@ -1,15 +1,19 @@
 package com.implementsfun.service;
 
 import com.implementsfun.Generator;
+import com.implementsfun.protoj.FilterMessage;
+import com.implementsfun.protoj.FilterMessage.*;
 import com.implementsfun.protoj.LaptopMessage.*;
 import com.implementsfun.protoj.LaptopServiceGrpc;
 import com.implementsfun.protoj.LaptopServiceGrpc.*;
 import com.implementsfun.protoj.LaptopServiceOuterClass.*;
+import com.implementsfun.protoj.MemoryMessage;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import io.grpc.Status;
 import io.grpc.StatusRuntimeException;
 
+import java.util.Iterator;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -62,12 +66,55 @@ public class LaptopClient {
          */
         LaptopClient client = new LaptopClient("0.0.0.0", 8080);
         Generator generator = new Generator();
-        Laptop laptop = generator.initLaptop();
-        try{
-            client.createLaptop(laptop);
-        }finally {
+        try {
+            for (int i = 0; i < 10; i++) {
+                Laptop laptop = generator.initLaptop();
+                client.createLaptop(laptop);
+            }
+            MemoryMessage.Memory minRam = MemoryMessage.Memory.newBuilder()
+                    .setValue(8)
+                    .setUnit(MemoryMessage.Memory.Unit.GIGABYTE)
+                    .build();
+            FilterMessage.Filter filter = FilterMessage.Filter.newBuilder()
+                    .setMaxPriceUsd(3000)
+                    .setMinCpuCores(4)
+                    .setMinCpuGhz(2.5)
+                    .setMinRam(minRam)
+                    .build();
+            client.searchLaptop(filter);
+        } finally {
             client.shutdown();
         }
 
+    }
+    /**
+     * 今早没有吃饭，快到中午了，
+     * 天气比较热，这会儿想订个餐算了
+     * 枕头昨天放了本数学之美
+     * 不知道什么时候能看完
+     */
+    private void searchLaptop(Filter filter){
+        logger.info("search started");
+        SearchLaptopRequest request =
+                SearchLaptopRequest.newBuilder().setFilter(filter).build();
+        try{
+            Iterator<SearchLaptopResponse> responseIterator =
+                    blockingStub
+                            //这个方法是设定允许服务端和客户端本次request限时
+                            //超过这个时间，server端即使还有数据则客户端不再接收
+//                            .withDeadlineAfter(5,TimeUnit.SECONDS)
+//                            .withCallCredentials()
+                            .searchLaptop(request);
+
+            while(responseIterator.hasNext()){
+                SearchLaptopResponse response = responseIterator.next();
+                Laptop laptop = response.getLaptop();
+                logger.info("- found:"+laptop.getId());
+            }
+        }catch (Exception e){
+            logger.log(Level.SEVERE,"request failed: "+e.getMessage());
+            return;
+        }
+        logger.info("search completed");
     }
 }

@@ -1225,6 +1225,1252 @@ public final class LaptopServiceOuterClass {
 
   }
 
+  public interface SearchLaptopRequestOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:SearchLaptopRequest)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>.Filter filter = 1;</code>
+     * @return Whether the filter field is set.
+     */
+    boolean hasFilter();
+    /**
+     * <code>.Filter filter = 1;</code>
+     * @return The filter.
+     */
+    FilterMessage.Filter getFilter();
+    /**
+     * <code>.Filter filter = 1;</code>
+     */
+    FilterMessage.FilterOrBuilder getFilterOrBuilder();
+  }
+  /**
+   * Protobuf type {@code SearchLaptopRequest}
+   */
+  public static final class SearchLaptopRequest extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:SearchLaptopRequest)
+      SearchLaptopRequestOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use SearchLaptopRequest.newBuilder() to construct.
+    private SearchLaptopRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private SearchLaptopRequest() {
+    }
+
+    @Override
+    @SuppressWarnings({"unused"})
+    protected Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new SearchLaptopRequest();
+    }
+
+    @Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private SearchLaptopRequest(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new NullPointerException();
+      }
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 10: {
+              FilterMessage.Filter.Builder subBuilder = null;
+              if (filter_ != null) {
+                subBuilder = filter_.toBuilder();
+              }
+              filter_ = input.readMessage(FilterMessage.Filter.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(filter_);
+                filter_ = subBuilder.buildPartial();
+              }
+
+              break;
+            }
+            default: {
+              if (!parseUnknownField(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (com.google.protobuf.UninitializedMessageException e) {
+        throw e.asInvalidProtocolBufferException().setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return LaptopServiceOuterClass.internal_static_SearchLaptopRequest_descriptor;
+    }
+
+    @Override
+    protected FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return LaptopServiceOuterClass.internal_static_SearchLaptopRequest_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              SearchLaptopRequest.class, Builder.class);
+    }
+
+    public static final int FILTER_FIELD_NUMBER = 1;
+    private FilterMessage.Filter filter_;
+    /**
+     * <code>.Filter filter = 1;</code>
+     * @return Whether the filter field is set.
+     */
+    @Override
+    public boolean hasFilter() {
+      return filter_ != null;
+    }
+    /**
+     * <code>.Filter filter = 1;</code>
+     * @return The filter.
+     */
+    @Override
+    public FilterMessage.Filter getFilter() {
+      return filter_ == null ? FilterMessage.Filter.getDefaultInstance() : filter_;
+    }
+    /**
+     * <code>.Filter filter = 1;</code>
+     */
+    @Override
+    public FilterMessage.FilterOrBuilder getFilterOrBuilder() {
+      return getFilter();
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (filter_ != null) {
+        output.writeMessage(1, getFilter());
+      }
+      unknownFields.writeTo(output);
+    }
+
+    @Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (filter_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(1, getFilter());
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @Override
+    public boolean equals(final Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof SearchLaptopRequest)) {
+        return super.equals(obj);
+      }
+      SearchLaptopRequest other = (SearchLaptopRequest) obj;
+
+      if (hasFilter() != other.hasFilter()) return false;
+      if (hasFilter()) {
+        if (!getFilter()
+            .equals(other.getFilter())) return false;
+      }
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
+    }
+
+    @Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      if (hasFilter()) {
+        hash = (37 * hash) + FILTER_FIELD_NUMBER;
+        hash = (53 * hash) + getFilter().hashCode();
+      }
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static SearchLaptopRequest parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static SearchLaptopRequest parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static SearchLaptopRequest parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static SearchLaptopRequest parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static SearchLaptopRequest parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static SearchLaptopRequest parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static SearchLaptopRequest parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static SearchLaptopRequest parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static SearchLaptopRequest parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static SearchLaptopRequest parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static SearchLaptopRequest parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static SearchLaptopRequest parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(SearchLaptopRequest prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @Override
+    protected Builder newBuilderForType(
+        BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code SearchLaptopRequest}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:SearchLaptopRequest)
+        SearchLaptopRequestOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return LaptopServiceOuterClass.internal_static_SearchLaptopRequest_descriptor;
+      }
+
+      @Override
+      protected FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return LaptopServiceOuterClass.internal_static_SearchLaptopRequest_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                SearchLaptopRequest.class, Builder.class);
+      }
+
+      // Construct using LaptopServiceOuterClass.SearchLaptopRequest.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      @Override
+      public Builder clear() {
+        super.clear();
+        if (filterBuilder_ == null) {
+          filter_ = null;
+        } else {
+          filter_ = null;
+          filterBuilder_ = null;
+        }
+        return this;
+      }
+
+      @Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return LaptopServiceOuterClass.internal_static_SearchLaptopRequest_descriptor;
+      }
+
+      @Override
+      public SearchLaptopRequest getDefaultInstanceForType() {
+        return SearchLaptopRequest.getDefaultInstance();
+      }
+
+      @Override
+      public SearchLaptopRequest build() {
+        SearchLaptopRequest result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @Override
+      public SearchLaptopRequest buildPartial() {
+        SearchLaptopRequest result = new SearchLaptopRequest(this);
+        if (filterBuilder_ == null) {
+          result.filter_ = filter_;
+        } else {
+          result.filter_ = filterBuilder_.build();
+        }
+        onBuilt();
+        return result;
+      }
+
+      @Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return super.setField(field, value);
+      }
+      @Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof SearchLaptopRequest) {
+          return mergeFrom((SearchLaptopRequest)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(SearchLaptopRequest other) {
+        if (other == SearchLaptopRequest.getDefaultInstance()) return this;
+        if (other.hasFilter()) {
+          mergeFilter(other.getFilter());
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        SearchLaptopRequest parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (SearchLaptopRequest) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private FilterMessage.Filter filter_;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          FilterMessage.Filter, FilterMessage.Filter.Builder, FilterMessage.FilterOrBuilder> filterBuilder_;
+      /**
+       * <code>.Filter filter = 1;</code>
+       * @return Whether the filter field is set.
+       */
+      public boolean hasFilter() {
+        return filterBuilder_ != null || filter_ != null;
+      }
+      /**
+       * <code>.Filter filter = 1;</code>
+       * @return The filter.
+       */
+      public FilterMessage.Filter getFilter() {
+        if (filterBuilder_ == null) {
+          return filter_ == null ? FilterMessage.Filter.getDefaultInstance() : filter_;
+        } else {
+          return filterBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>.Filter filter = 1;</code>
+       */
+      public Builder setFilter(FilterMessage.Filter value) {
+        if (filterBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          filter_ = value;
+          onChanged();
+        } else {
+          filterBuilder_.setMessage(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.Filter filter = 1;</code>
+       */
+      public Builder setFilter(
+          FilterMessage.Filter.Builder builderForValue) {
+        if (filterBuilder_ == null) {
+          filter_ = builderForValue.build();
+          onChanged();
+        } else {
+          filterBuilder_.setMessage(builderForValue.build());
+        }
+
+        return this;
+      }
+      /**
+       * <code>.Filter filter = 1;</code>
+       */
+      public Builder mergeFilter(FilterMessage.Filter value) {
+        if (filterBuilder_ == null) {
+          if (filter_ != null) {
+            filter_ =
+              FilterMessage.Filter.newBuilder(filter_).mergeFrom(value).buildPartial();
+          } else {
+            filter_ = value;
+          }
+          onChanged();
+        } else {
+          filterBuilder_.mergeFrom(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.Filter filter = 1;</code>
+       */
+      public Builder clearFilter() {
+        if (filterBuilder_ == null) {
+          filter_ = null;
+          onChanged();
+        } else {
+          filter_ = null;
+          filterBuilder_ = null;
+        }
+
+        return this;
+      }
+      /**
+       * <code>.Filter filter = 1;</code>
+       */
+      public FilterMessage.Filter.Builder getFilterBuilder() {
+        
+        onChanged();
+        return getFilterFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.Filter filter = 1;</code>
+       */
+      public FilterMessage.FilterOrBuilder getFilterOrBuilder() {
+        if (filterBuilder_ != null) {
+          return filterBuilder_.getMessageOrBuilder();
+        } else {
+          return filter_ == null ?
+              FilterMessage.Filter.getDefaultInstance() : filter_;
+        }
+      }
+      /**
+       * <code>.Filter filter = 1;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          FilterMessage.Filter, FilterMessage.Filter.Builder, FilterMessage.FilterOrBuilder> 
+          getFilterFieldBuilder() {
+        if (filterBuilder_ == null) {
+          filterBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              FilterMessage.Filter, FilterMessage.Filter.Builder, FilterMessage.FilterOrBuilder>(
+                  getFilter(),
+                  getParentForChildren(),
+                  isClean());
+          filter_ = null;
+        }
+        return filterBuilder_;
+      }
+      @Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:SearchLaptopRequest)
+    }
+
+    // @@protoc_insertion_point(class_scope:SearchLaptopRequest)
+    private static final SearchLaptopRequest DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new SearchLaptopRequest();
+    }
+
+    public static SearchLaptopRequest getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<SearchLaptopRequest>
+        PARSER = new com.google.protobuf.AbstractParser<SearchLaptopRequest>() {
+      @Override
+      public SearchLaptopRequest parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new SearchLaptopRequest(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<SearchLaptopRequest> parser() {
+      return PARSER;
+    }
+
+    @Override
+    public com.google.protobuf.Parser<SearchLaptopRequest> getParserForType() {
+      return PARSER;
+    }
+
+    @Override
+    public SearchLaptopRequest getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface SearchLaptopResponseOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:SearchLaptopResponse)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>.Laptop laptop = 1;</code>
+     * @return Whether the laptop field is set.
+     */
+    boolean hasLaptop();
+    /**
+     * <code>.Laptop laptop = 1;</code>
+     * @return The laptop.
+     */
+    LaptopMessage.Laptop getLaptop();
+    /**
+     * <code>.Laptop laptop = 1;</code>
+     */
+    LaptopMessage.LaptopOrBuilder getLaptopOrBuilder();
+  }
+  /**
+   * Protobuf type {@code SearchLaptopResponse}
+   */
+  public static final class SearchLaptopResponse extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:SearchLaptopResponse)
+      SearchLaptopResponseOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use SearchLaptopResponse.newBuilder() to construct.
+    private SearchLaptopResponse(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private SearchLaptopResponse() {
+    }
+
+    @Override
+    @SuppressWarnings({"unused"})
+    protected Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new SearchLaptopResponse();
+    }
+
+    @Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private SearchLaptopResponse(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new NullPointerException();
+      }
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 10: {
+              LaptopMessage.Laptop.Builder subBuilder = null;
+              if (laptop_ != null) {
+                subBuilder = laptop_.toBuilder();
+              }
+              laptop_ = input.readMessage(LaptopMessage.Laptop.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(laptop_);
+                laptop_ = subBuilder.buildPartial();
+              }
+
+              break;
+            }
+            default: {
+              if (!parseUnknownField(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (com.google.protobuf.UninitializedMessageException e) {
+        throw e.asInvalidProtocolBufferException().setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return LaptopServiceOuterClass.internal_static_SearchLaptopResponse_descriptor;
+    }
+
+    @Override
+    protected FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return LaptopServiceOuterClass.internal_static_SearchLaptopResponse_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              SearchLaptopResponse.class, Builder.class);
+    }
+
+    public static final int LAPTOP_FIELD_NUMBER = 1;
+    private LaptopMessage.Laptop laptop_;
+    /**
+     * <code>.Laptop laptop = 1;</code>
+     * @return Whether the laptop field is set.
+     */
+    @Override
+    public boolean hasLaptop() {
+      return laptop_ != null;
+    }
+    /**
+     * <code>.Laptop laptop = 1;</code>
+     * @return The laptop.
+     */
+    @Override
+    public LaptopMessage.Laptop getLaptop() {
+      return laptop_ == null ? LaptopMessage.Laptop.getDefaultInstance() : laptop_;
+    }
+    /**
+     * <code>.Laptop laptop = 1;</code>
+     */
+    @Override
+    public LaptopMessage.LaptopOrBuilder getLaptopOrBuilder() {
+      return getLaptop();
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (laptop_ != null) {
+        output.writeMessage(1, getLaptop());
+      }
+      unknownFields.writeTo(output);
+    }
+
+    @Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (laptop_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(1, getLaptop());
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @Override
+    public boolean equals(final Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof SearchLaptopResponse)) {
+        return super.equals(obj);
+      }
+      SearchLaptopResponse other = (SearchLaptopResponse) obj;
+
+      if (hasLaptop() != other.hasLaptop()) return false;
+      if (hasLaptop()) {
+        if (!getLaptop()
+            .equals(other.getLaptop())) return false;
+      }
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
+    }
+
+    @Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      if (hasLaptop()) {
+        hash = (37 * hash) + LAPTOP_FIELD_NUMBER;
+        hash = (53 * hash) + getLaptop().hashCode();
+      }
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static SearchLaptopResponse parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static SearchLaptopResponse parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static SearchLaptopResponse parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static SearchLaptopResponse parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static SearchLaptopResponse parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static SearchLaptopResponse parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static SearchLaptopResponse parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static SearchLaptopResponse parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static SearchLaptopResponse parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static SearchLaptopResponse parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static SearchLaptopResponse parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static SearchLaptopResponse parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(SearchLaptopResponse prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @Override
+    protected Builder newBuilderForType(
+        BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code SearchLaptopResponse}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:SearchLaptopResponse)
+        SearchLaptopResponseOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return LaptopServiceOuterClass.internal_static_SearchLaptopResponse_descriptor;
+      }
+
+      @Override
+      protected FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return LaptopServiceOuterClass.internal_static_SearchLaptopResponse_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                SearchLaptopResponse.class, Builder.class);
+      }
+
+      // Construct using LaptopServiceOuterClass.SearchLaptopResponse.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      @Override
+      public Builder clear() {
+        super.clear();
+        if (laptopBuilder_ == null) {
+          laptop_ = null;
+        } else {
+          laptop_ = null;
+          laptopBuilder_ = null;
+        }
+        return this;
+      }
+
+      @Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return LaptopServiceOuterClass.internal_static_SearchLaptopResponse_descriptor;
+      }
+
+      @Override
+      public SearchLaptopResponse getDefaultInstanceForType() {
+        return SearchLaptopResponse.getDefaultInstance();
+      }
+
+      @Override
+      public SearchLaptopResponse build() {
+        SearchLaptopResponse result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @Override
+      public SearchLaptopResponse buildPartial() {
+        SearchLaptopResponse result = new SearchLaptopResponse(this);
+        if (laptopBuilder_ == null) {
+          result.laptop_ = laptop_;
+        } else {
+          result.laptop_ = laptopBuilder_.build();
+        }
+        onBuilt();
+        return result;
+      }
+
+      @Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return super.setField(field, value);
+      }
+      @Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof SearchLaptopResponse) {
+          return mergeFrom((SearchLaptopResponse)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(SearchLaptopResponse other) {
+        if (other == SearchLaptopResponse.getDefaultInstance()) return this;
+        if (other.hasLaptop()) {
+          mergeLaptop(other.getLaptop());
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        SearchLaptopResponse parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (SearchLaptopResponse) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private LaptopMessage.Laptop laptop_;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          LaptopMessage.Laptop, LaptopMessage.Laptop.Builder, LaptopMessage.LaptopOrBuilder> laptopBuilder_;
+      /**
+       * <code>.Laptop laptop = 1;</code>
+       * @return Whether the laptop field is set.
+       */
+      public boolean hasLaptop() {
+        return laptopBuilder_ != null || laptop_ != null;
+      }
+      /**
+       * <code>.Laptop laptop = 1;</code>
+       * @return The laptop.
+       */
+      public LaptopMessage.Laptop getLaptop() {
+        if (laptopBuilder_ == null) {
+          return laptop_ == null ? LaptopMessage.Laptop.getDefaultInstance() : laptop_;
+        } else {
+          return laptopBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>.Laptop laptop = 1;</code>
+       */
+      public Builder setLaptop(LaptopMessage.Laptop value) {
+        if (laptopBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          laptop_ = value;
+          onChanged();
+        } else {
+          laptopBuilder_.setMessage(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.Laptop laptop = 1;</code>
+       */
+      public Builder setLaptop(
+          LaptopMessage.Laptop.Builder builderForValue) {
+        if (laptopBuilder_ == null) {
+          laptop_ = builderForValue.build();
+          onChanged();
+        } else {
+          laptopBuilder_.setMessage(builderForValue.build());
+        }
+
+        return this;
+      }
+      /**
+       * <code>.Laptop laptop = 1;</code>
+       */
+      public Builder mergeLaptop(LaptopMessage.Laptop value) {
+        if (laptopBuilder_ == null) {
+          if (laptop_ != null) {
+            laptop_ =
+              LaptopMessage.Laptop.newBuilder(laptop_).mergeFrom(value).buildPartial();
+          } else {
+            laptop_ = value;
+          }
+          onChanged();
+        } else {
+          laptopBuilder_.mergeFrom(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.Laptop laptop = 1;</code>
+       */
+      public Builder clearLaptop() {
+        if (laptopBuilder_ == null) {
+          laptop_ = null;
+          onChanged();
+        } else {
+          laptop_ = null;
+          laptopBuilder_ = null;
+        }
+
+        return this;
+      }
+      /**
+       * <code>.Laptop laptop = 1;</code>
+       */
+      public LaptopMessage.Laptop.Builder getLaptopBuilder() {
+        
+        onChanged();
+        return getLaptopFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.Laptop laptop = 1;</code>
+       */
+      public LaptopMessage.LaptopOrBuilder getLaptopOrBuilder() {
+        if (laptopBuilder_ != null) {
+          return laptopBuilder_.getMessageOrBuilder();
+        } else {
+          return laptop_ == null ?
+              LaptopMessage.Laptop.getDefaultInstance() : laptop_;
+        }
+      }
+      /**
+       * <code>.Laptop laptop = 1;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          LaptopMessage.Laptop, LaptopMessage.Laptop.Builder, LaptopMessage.LaptopOrBuilder> 
+          getLaptopFieldBuilder() {
+        if (laptopBuilder_ == null) {
+          laptopBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              LaptopMessage.Laptop, LaptopMessage.Laptop.Builder, LaptopMessage.LaptopOrBuilder>(
+                  getLaptop(),
+                  getParentForChildren(),
+                  isClean());
+          laptop_ = null;
+        }
+        return laptopBuilder_;
+      }
+      @Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:SearchLaptopResponse)
+    }
+
+    // @@protoc_insertion_point(class_scope:SearchLaptopResponse)
+    private static final SearchLaptopResponse DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new SearchLaptopResponse();
+    }
+
+    public static SearchLaptopResponse getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<SearchLaptopResponse>
+        PARSER = new com.google.protobuf.AbstractParser<SearchLaptopResponse>() {
+      @Override
+      public SearchLaptopResponse parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new SearchLaptopResponse(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<SearchLaptopResponse> parser() {
+      return PARSER;
+    }
+
+    @Override
+    public com.google.protobuf.Parser<SearchLaptopResponse> getParserForType() {
+      return PARSER;
+    }
+
+    @Override
+    public SearchLaptopResponse getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_CreateLaptopRequest_descriptor;
   private static final 
@@ -1235,6 +2481,16 @@ public final class LaptopServiceOuterClass {
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_CreateLaptopResponse_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_SearchLaptopRequest_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_SearchLaptopRequest_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_SearchLaptopResponse_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_SearchLaptopResponse_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -1245,16 +2501,22 @@ public final class LaptopServiceOuterClass {
   static {
     String[] descriptorData = {
       "\n\024laptop_service.proto\032\024laptop_message.p" +
-      "roto\".\n\023CreateLaptopRequest\022\027\n\006laptop\030\001 " +
-      "\001(\0132\007.Laptop\"\"\n\024CreateLaptopResponse\022\n\n\002" +
-      "id\030\001 \001(\t2N\n\rLaptopService\022=\n\014createLapto" +
+      "roto\032\024filter_message.proto\".\n\023CreateLapt" +
+      "opRequest\022\027\n\006laptop\030\001 \001(\0132\007.Laptop\"\"\n\024Cr" +
+      "eateLaptopResponse\022\n\n\002id\030\001 \001(\t\".\n\023Search" +
+      "LaptopRequest\022\027\n\006filter\030\001 \001(\0132\007.Filter\"/" +
+      "\n\024SearchLaptopResponse\022\027\n\006laptop\030\001 \001(\0132\007" +
+      ".Laptop2\217\001\n\rLaptopService\022=\n\014createLapto" +
       "p\022\024.CreateLaptopRequest\032\025.CreateLaptopRe" +
-      "sponse\"\000b\006proto3"
+      "sponse\"\000\022?\n\014searchLaptop\022\024.SearchLaptopR" +
+      "equest\032\025.SearchLaptopResponse\"\0000\001b\006proto" +
+      "3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
           LaptopMessage.getDescriptor(),
+          FilterMessage.getDescriptor(),
         });
     internal_static_CreateLaptopRequest_descriptor =
       getDescriptor().getMessageTypes().get(0);
@@ -1268,7 +2530,20 @@ public final class LaptopServiceOuterClass {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_CreateLaptopResponse_descriptor,
         new String[] { "Id", });
+    internal_static_SearchLaptopRequest_descriptor =
+      getDescriptor().getMessageTypes().get(2);
+    internal_static_SearchLaptopRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_SearchLaptopRequest_descriptor,
+        new String[] { "Filter", });
+    internal_static_SearchLaptopResponse_descriptor =
+      getDescriptor().getMessageTypes().get(3);
+    internal_static_SearchLaptopResponse_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_SearchLaptopResponse_descriptor,
+        new String[] { "Laptop", });
     LaptopMessage.getDescriptor();
+    FilterMessage.getDescriptor();
   }
 
   // @@protoc_insertion_point(outer_class_scope)

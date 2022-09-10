@@ -3,6 +3,7 @@
  */
 syntax="proto3";
 import "laptop_message.proto";
+import "filter_message.proto";
 
 /**
 创建请求
@@ -24,4 +25,12 @@ service LaptopService{
   包括请求参数和返回参数
    */
   rpc createLaptop(CreateLaptopRequest) returns (CreateLaptopResponse){};
+  rpc searchLaptop(SearchLaptopRequest) returns (stream SearchLaptopResponse){};
+}
+
+message SearchLaptopRequest{
+  Filter filter =1;
+}
+message SearchLaptopResponse{
+  Laptop laptop = 1;
 }
