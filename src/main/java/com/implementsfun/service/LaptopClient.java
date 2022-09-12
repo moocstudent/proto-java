@@ -1,5 +1,6 @@
 package com.implementsfun.service;
 
+import com.google.protobuf.ByteString;
 import com.implementsfun.Generator;
 import com.implementsfun.protoj.FilterMessage;
 import com.implementsfun.protoj.FilterMessage.*;
@@ -12,8 +13,12 @@ import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import io.grpc.Status;
 import io.grpc.StatusRuntimeException;
+import io.grpc.stub.StreamObserver;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.util.Iterator;
+import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -26,6 +31,8 @@ public class LaptopClient {
 
     private final ManagedChannel channel;
     private final LaptopServiceBlockingStub blockingStub;
+//    private final LaptopServiceFutureStub futureStub;
+    private final LaptopServiceStub asyncStub;
 
     public LaptopClient(String host,int port){
         channel = ManagedChannelBuilder.forAddress(host,port)
@@ -33,6 +40,8 @@ public class LaptopClient {
                 .build();
         //阻塞信道stub之类的
         blockingStub = LaptopServiceGrpc.newBlockingStub(channel);
+        //异步stub
+        asyncStub = LaptopServiceGrpc.newStub(channel);
     }
     public void shutdown() throws InterruptedException {
         channel.shutdown().awaitTermination(5, TimeUnit.SECONDS);
@@ -66,22 +75,27 @@ public class LaptopClient {
          */
         LaptopClient client = new LaptopClient("0.0.0.0", 8080);
         Generator generator = new Generator();
+        //test search laptop (server streaming)
         try {
-            for (int i = 0; i < 10; i++) {
-                Laptop laptop = generator.initLaptop();
-                client.createLaptop(laptop);
-            }
-            MemoryMessage.Memory minRam = MemoryMessage.Memory.newBuilder()
-                    .setValue(8)
-                    .setUnit(MemoryMessage.Memory.Unit.GIGABYTE)
-                    .build();
-            FilterMessage.Filter filter = FilterMessage.Filter.newBuilder()
-                    .setMaxPriceUsd(3000)
-                    .setMinCpuCores(4)
-                    .setMinCpuGhz(2.5)
-                    .setMinRam(minRam)
-                    .build();
-            client.searchLaptop(filter);
+//            for (int i = 0; i < 10; i++) {
+//                Laptop laptop = generator.initLaptop();
+//                client.createLaptop(laptop);
+//            }
+//            MemoryMessage.Memory minRam = MemoryMessage.Memory.newBuilder()
+//                    .setValue(8)
+//                    .setUnit(MemoryMessage.Memory.Unit.GIGABYTE)
+//                    .build();
+//            FilterMessage.Filter filter = FilterMessage.Filter.newBuilder()
+//                    .setMaxPriceUsd(3000)
+//                    .setMinCpuCores(4)
+//                    .setMinCpuGhz(2.5)
+//                    .setMinRam(minRam)
+//                    .build();
+//            client.searchLaptop(filter);
+        //test upload image (client streaming)
+            Laptop laptop = generator.initLaptop();
+            client.createLaptop(laptop);
+            client.uploadImage(laptop.getId(),"tmp/laptop.png");
         } finally {
             client.shutdown();
         }
@@ -116,5 +130,85 @@ public class LaptopClient {
             return;
         }
         logger.info("search completed");
+    }
+
+    public void uploadImage(String laptopID,String imagePath) throws InterruptedException {
+        /**
+         * CountDownLatch即来将线程进行统一结束的处理
+         * 具体在CountDownLatch源码注释非常好理解
+         * 为什么这里用
+         * 因为多个client请求后
+         * 服务端上传会在不同线程执行
+         * 但为了等全部请求线程结束掉该streaming请求
+         * 类似源码注释里startSignal
+         */
+        final CountDownLatch finishLatch = new CountDownLatch(1);
+        StreamObserver<UploadImageRequest> requestObserver =
+                asyncStub.withDeadlineAfter(5, TimeUnit.SECONDS)
+                        .uploadImage(new StreamObserver<UploadImageResponse>() {
+                            @Override
+                            public void onNext(UploadImageResponse response) {
+                                logger.info("receive response:\n"+response);
+                            }
+
+                            @Override
+                            public void onError(Throwable t) {
+                                logger.log(Level.SEVERE,"upload failed: "+t.getMessage());
+                                finishLatch.countDown();
+                            }
+
+                            @Override
+                            public void onCompleted() {
+                                logger.info("image uploaded");
+                                /**
+                                 * 这个博主除了Java方法开头大写不规范外
+                                 * 其他使用但技术点还挺全的哈
+                                 */
+                                finishLatch.countDown();
+                            }
+                        });
+        FileInputStream fileInputStream;
+        try {
+            fileInputStream = new FileInputStream(imagePath);
+        } catch (FileNotFoundException e) {
+            logger.log(Level.SEVERE,"cannot read image file: "+e.getMessage());
+            return;
+        }
+
+        String imageType = imagePath.substring(imagePath.lastIndexOf("."));
+        ImageInfo info = ImageInfo.newBuilder().setLaptopId(laptopID).setImageType(imageType).build();
+        UploadImageRequest request = UploadImageRequest.newBuilder().setInfo(info).build();
+
+        try {
+            requestObserver.onNext(request);
+            logger.info("sent image info:\n "+info);
+            byte[] buffer = new byte[1024];
+            while(true){
+                int n = fileInputStream.read(buffer);
+                if(n<=0){
+                    break;
+                }
+                if (finishLatch.getCount() == 0) {
+                    return;
+                }
+                request=UploadImageRequest.newBuilder()
+                        .setChunkData(ByteString.copyFrom(buffer,0,n))
+                        .build();
+                requestObserver.onNext(request);
+                logger.info("sent image chunk with size: "+n);
+            }
+        } catch (Exception e) {
+            logger.log(Level.SEVERE,"unexpected error: "+e.getMessage());
+            requestObserver.onError(e);
+            return;
+        }
+
+        requestObserver.onCompleted();
+        /**
+         * 如果latch 1分钟后依旧没有传输完，那么结束
+         */
+        if(!finishLatch.await(1,TimeUnit.MINUTES)){
+            logger.warning("request cannot finish within 1 minute");
+        }
     }
 }

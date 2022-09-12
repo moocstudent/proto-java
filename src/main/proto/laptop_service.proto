@@ -1,5 +1,7 @@
 /**
 现在就等福特！Yeah
+gRPC是谷歌推出的基于HTTP2协议的更快速的服务端-客户端调用方式
+其主要从数据连接上采用了二进制传输以及header压缩的方式
  */
 syntax="proto3";
 import "laptop_message.proto";
@@ -17,6 +19,25 @@ message CreateLaptopRequest{
 message CreateLaptopResponse{
   string id=1;
 }
+
+/**
+测试client streaming
+ */
+message UploadImageRequest{
+  oneof data{
+    ImageInfo info = 1;
+    bytes chunk_data=2;
+  }
+}
+message ImageInfo{
+  string laptop_id=1;
+  string image_type=2;
+}
+message UploadImageResponse{
+  string id =1;
+  uint32 size=2;
+}
+
 /**
 laptop相关服务
  */
@@ -26,6 +47,7 @@ service LaptopService{
    */
   rpc createLaptop(CreateLaptopRequest) returns (CreateLaptopResponse){};
   rpc searchLaptop(SearchLaptopRequest) returns (stream SearchLaptopResponse){};
+  rpc uploadImage(stream UploadImageRequest) returns (UploadImageResponse){};
 }
 
 message SearchLaptopRequest{
