@@ -1,6 +1,7 @@
 package com.implementsfun.service;
 
 import com.google.protobuf.ByteString;
+import com.implementsfun.entity.Rating;
 import com.implementsfun.protoj.FilterMessage.*;
 import com.implementsfun.protoj.LaptopMessage.*;
 import com.implementsfun.protoj.LaptopServiceGrpc;
@@ -21,6 +22,7 @@ public class LaptopService extends LaptopServiceGrpc.LaptopServiceImplBase {
             Logger.getLogger(LaptopService.class.getName());
     private LaptopStore laptopStore;
     private ImageStore imageStore;
+    private RatingStore ratingStore;
 
     public LaptopService(LaptopStore laptopStore){
         this.laptopStore = laptopStore;
@@ -29,6 +31,12 @@ public class LaptopService extends LaptopServiceGrpc.LaptopServiceImplBase {
     public LaptopService(LaptopStore laptopStore,ImageStore imageStore){
         this.laptopStore = laptopStore;
         this.imageStore = imageStore;
+    }
+
+    public LaptopService(LaptopStore laptopStore,ImageStore imageStore,RatingStore ratingStore){
+        this.laptopStore = laptopStore;
+        this.imageStore = imageStore;
+        this.ratingStore = ratingStore;
     }
 
     @Override
@@ -212,5 +220,45 @@ public class LaptopService extends LaptopServiceGrpc.LaptopServiceImplBase {
             }
         };
     }
+
+    public StreamObserver<RateLaptopRequest> rateLaptop(StreamObserver<RateLaptopResponse> responseObserver){
+        return new StreamObserver<RateLaptopRequest>() {
+            @Override
+            public void onNext(RateLaptopRequest request) {
+                String laptopId = request.getLaptopId();
+                double score = request.getScore();
+
+                logger.info("received rate-laptop request: id = "+laptopId+" , score = "+score);
+                Laptop found = laptopStore.find(laptopId);
+                if(found==null){
+                    responseObserver.onError(
+                            Status.NOT_FOUND
+                                    .withDescription("laptop ID doesn't exist")
+                                    .asRuntimeException()
+                    );
+                    return;
+                }
+                Rating rating = ratingStore.add(laptopId,score);
+                RateLaptopResponse response = RateLaptopResponse.newBuilder()
+                        .setLaptopId(laptopId)
+                        .setRatedCount(rating.getCount())
+                        .setAverageScore(rating.getSum() / rating.getCount())
+                        .build();
+                responseObserver.onNext(response);
+            }
+
+            @Override
+            public void onError(Throwable t) {
+                logger.warning(t.getMessage());
+            }
+
+            @Override
+            public void onCompleted() {
+                responseObserver.onCompleted();
+            }
+        };
+    }
+
+
 
 }

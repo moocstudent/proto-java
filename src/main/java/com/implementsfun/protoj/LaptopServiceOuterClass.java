@@ -3423,6 +3423,1386 @@ public final class LaptopServiceOuterClass {
 
   }
 
+  public interface RateLaptopRequestOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:RateLaptopRequest)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>string laptop_id = 1;</code>
+     * @return The laptopId.
+     */
+    String getLaptopId();
+    /**
+     * <code>string laptop_id = 1;</code>
+     * @return The bytes for laptopId.
+     */
+    com.google.protobuf.ByteString
+        getLaptopIdBytes();
+
+    /**
+     * <code>double score = 2;</code>
+     * @return The score.
+     */
+    double getScore();
+  }
+  /**
+   * <pre>
+   **
+   *今天不仅要体检，拿毕业证，需要准备明天去YI入职，
+   *并且要带好相关都offer上的材料，
+   *除了这些还
+   *要看下专升本的群里，报名入口已经开放，
+   *时间是
+   *9月13（周二）今日 到 9月17日（周六）
+   *每天9点到22点（其中9月17日时间为早9点到晚8点）
+   *需要工作证明一个
+   *生成流水号和报考信息才算成功报名
+   * </pre>
+   *
+   * Protobuf type {@code RateLaptopRequest}
+   */
+  public static final class RateLaptopRequest extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:RateLaptopRequest)
+      RateLaptopRequestOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use RateLaptopRequest.newBuilder() to construct.
+    private RateLaptopRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private RateLaptopRequest() {
+      laptopId_ = "";
+    }
+
+    @Override
+    @SuppressWarnings({"unused"})
+    protected Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new RateLaptopRequest();
+    }
+
+    @Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private RateLaptopRequest(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new NullPointerException();
+      }
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 10: {
+              String s = input.readStringRequireUtf8();
+
+              laptopId_ = s;
+              break;
+            }
+            case 17: {
+
+              score_ = input.readDouble();
+              break;
+            }
+            default: {
+              if (!parseUnknownField(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (com.google.protobuf.UninitializedMessageException e) {
+        throw e.asInvalidProtocolBufferException().setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return LaptopServiceOuterClass.internal_static_RateLaptopRequest_descriptor;
+    }
+
+    @Override
+    protected FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return LaptopServiceOuterClass.internal_static_RateLaptopRequest_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              RateLaptopRequest.class, Builder.class);
+    }
+
+    public static final int LAPTOP_ID_FIELD_NUMBER = 1;
+    private volatile Object laptopId_;
+    /**
+     * <code>string laptop_id = 1;</code>
+     * @return The laptopId.
+     */
+    @Override
+    public String getLaptopId() {
+      Object ref = laptopId_;
+      if (ref instanceof String) {
+        return (String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        String s = bs.toStringUtf8();
+        laptopId_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string laptop_id = 1;</code>
+     * @return The bytes for laptopId.
+     */
+    @Override
+    public com.google.protobuf.ByteString
+        getLaptopIdBytes() {
+      Object ref = laptopId_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (String) ref);
+        laptopId_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int SCORE_FIELD_NUMBER = 2;
+    private double score_;
+    /**
+     * <code>double score = 2;</code>
+     * @return The score.
+     */
+    @Override
+    public double getScore() {
+      return score_;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(laptopId_)) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, laptopId_);
+      }
+      if (Double.doubleToRawLongBits(score_) != 0) {
+        output.writeDouble(2, score_);
+      }
+      unknownFields.writeTo(output);
+    }
+
+    @Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(laptopId_)) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, laptopId_);
+      }
+      if (Double.doubleToRawLongBits(score_) != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeDoubleSize(2, score_);
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @Override
+    public boolean equals(final Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof RateLaptopRequest)) {
+        return super.equals(obj);
+      }
+      RateLaptopRequest other = (RateLaptopRequest) obj;
+
+      if (!getLaptopId()
+          .equals(other.getLaptopId())) return false;
+      if (Double.doubleToLongBits(getScore())
+          != Double.doubleToLongBits(
+              other.getScore())) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
+    }
+
+    @Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + LAPTOP_ID_FIELD_NUMBER;
+      hash = (53 * hash) + getLaptopId().hashCode();
+      hash = (37 * hash) + SCORE_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          Double.doubleToLongBits(getScore()));
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static RateLaptopRequest parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static RateLaptopRequest parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static RateLaptopRequest parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static RateLaptopRequest parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static RateLaptopRequest parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static RateLaptopRequest parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static RateLaptopRequest parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static RateLaptopRequest parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static RateLaptopRequest parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static RateLaptopRequest parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static RateLaptopRequest parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static RateLaptopRequest parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(RateLaptopRequest prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @Override
+    protected Builder newBuilderForType(
+        BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * <pre>
+     **
+     *今天不仅要体检，拿毕业证，需要准备明天去YI入职，
+     *并且要带好相关都offer上的材料，
+     *除了这些还
+     *要看下专升本的群里，报名入口已经开放，
+     *时间是
+     *9月13（周二）今日 到 9月17日（周六）
+     *每天9点到22点（其中9月17日时间为早9点到晚8点）
+     *需要工作证明一个
+     *生成流水号和报考信息才算成功报名
+     * </pre>
+     *
+     * Protobuf type {@code RateLaptopRequest}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:RateLaptopRequest)
+        RateLaptopRequestOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return LaptopServiceOuterClass.internal_static_RateLaptopRequest_descriptor;
+      }
+
+      @Override
+      protected FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return LaptopServiceOuterClass.internal_static_RateLaptopRequest_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                RateLaptopRequest.class, Builder.class);
+      }
+
+      // Construct using LaptopServiceOuterClass.RateLaptopRequest.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      @Override
+      public Builder clear() {
+        super.clear();
+        laptopId_ = "";
+
+        score_ = 0D;
+
+        return this;
+      }
+
+      @Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return LaptopServiceOuterClass.internal_static_RateLaptopRequest_descriptor;
+      }
+
+      @Override
+      public RateLaptopRequest getDefaultInstanceForType() {
+        return RateLaptopRequest.getDefaultInstance();
+      }
+
+      @Override
+      public RateLaptopRequest build() {
+        RateLaptopRequest result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @Override
+      public RateLaptopRequest buildPartial() {
+        RateLaptopRequest result = new RateLaptopRequest(this);
+        result.laptopId_ = laptopId_;
+        result.score_ = score_;
+        onBuilt();
+        return result;
+      }
+
+      @Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return super.setField(field, value);
+      }
+      @Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof RateLaptopRequest) {
+          return mergeFrom((RateLaptopRequest)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(RateLaptopRequest other) {
+        if (other == RateLaptopRequest.getDefaultInstance()) return this;
+        if (!other.getLaptopId().isEmpty()) {
+          laptopId_ = other.laptopId_;
+          onChanged();
+        }
+        if (other.getScore() != 0D) {
+          setScore(other.getScore());
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        RateLaptopRequest parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (RateLaptopRequest) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private Object laptopId_ = "";
+      /**
+       * <code>string laptop_id = 1;</code>
+       * @return The laptopId.
+       */
+      public String getLaptopId() {
+        Object ref = laptopId_;
+        if (!(ref instanceof String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          String s = bs.toStringUtf8();
+          laptopId_ = s;
+          return s;
+        } else {
+          return (String) ref;
+        }
+      }
+      /**
+       * <code>string laptop_id = 1;</code>
+       * @return The bytes for laptopId.
+       */
+      public com.google.protobuf.ByteString
+          getLaptopIdBytes() {
+        Object ref = laptopId_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (String) ref);
+          laptopId_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string laptop_id = 1;</code>
+       * @param value The laptopId to set.
+       * @return This builder for chaining.
+       */
+      public Builder setLaptopId(
+          String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        laptopId_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string laptop_id = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearLaptopId() {
+        
+        laptopId_ = getDefaultInstance().getLaptopId();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string laptop_id = 1;</code>
+       * @param value The bytes for laptopId to set.
+       * @return This builder for chaining.
+       */
+      public Builder setLaptopIdBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        laptopId_ = value;
+        onChanged();
+        return this;
+      }
+
+      private double score_ ;
+      /**
+       * <code>double score = 2;</code>
+       * @return The score.
+       */
+      @Override
+      public double getScore() {
+        return score_;
+      }
+      /**
+       * <code>double score = 2;</code>
+       * @param value The score to set.
+       * @return This builder for chaining.
+       */
+      public Builder setScore(double value) {
+        
+        score_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>double score = 2;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearScore() {
+        
+        score_ = 0D;
+        onChanged();
+        return this;
+      }
+      @Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:RateLaptopRequest)
+    }
+
+    // @@protoc_insertion_point(class_scope:RateLaptopRequest)
+    private static final RateLaptopRequest DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new RateLaptopRequest();
+    }
+
+    public static RateLaptopRequest getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<RateLaptopRequest>
+        PARSER = new com.google.protobuf.AbstractParser<RateLaptopRequest>() {
+      @Override
+      public RateLaptopRequest parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new RateLaptopRequest(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<RateLaptopRequest> parser() {
+      return PARSER;
+    }
+
+    @Override
+    public com.google.protobuf.Parser<RateLaptopRequest> getParserForType() {
+      return PARSER;
+    }
+
+    @Override
+    public RateLaptopRequest getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface RateLaptopResponseOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:RateLaptopResponse)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>string laptop_id = 1;</code>
+     * @return The laptopId.
+     */
+    String getLaptopId();
+    /**
+     * <code>string laptop_id = 1;</code>
+     * @return The bytes for laptopId.
+     */
+    com.google.protobuf.ByteString
+        getLaptopIdBytes();
+
+    /**
+     * <code>uint32 rated_count = 2;</code>
+     * @return The ratedCount.
+     */
+    int getRatedCount();
+
+    /**
+     * <code>double average_score = 3;</code>
+     * @return The averageScore.
+     */
+    double getAverageScore();
+  }
+  /**
+   * Protobuf type {@code RateLaptopResponse}
+   */
+  public static final class RateLaptopResponse extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:RateLaptopResponse)
+      RateLaptopResponseOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use RateLaptopResponse.newBuilder() to construct.
+    private RateLaptopResponse(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private RateLaptopResponse() {
+      laptopId_ = "";
+    }
+
+    @Override
+    @SuppressWarnings({"unused"})
+    protected Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new RateLaptopResponse();
+    }
+
+    @Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private RateLaptopResponse(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new NullPointerException();
+      }
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 10: {
+              String s = input.readStringRequireUtf8();
+
+              laptopId_ = s;
+              break;
+            }
+            case 16: {
+
+              ratedCount_ = input.readUInt32();
+              break;
+            }
+            case 25: {
+
+              averageScore_ = input.readDouble();
+              break;
+            }
+            default: {
+              if (!parseUnknownField(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (com.google.protobuf.UninitializedMessageException e) {
+        throw e.asInvalidProtocolBufferException().setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return LaptopServiceOuterClass.internal_static_RateLaptopResponse_descriptor;
+    }
+
+    @Override
+    protected FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return LaptopServiceOuterClass.internal_static_RateLaptopResponse_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              RateLaptopResponse.class, Builder.class);
+    }
+
+    public static final int LAPTOP_ID_FIELD_NUMBER = 1;
+    private volatile Object laptopId_;
+    /**
+     * <code>string laptop_id = 1;</code>
+     * @return The laptopId.
+     */
+    @Override
+    public String getLaptopId() {
+      Object ref = laptopId_;
+      if (ref instanceof String) {
+        return (String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        String s = bs.toStringUtf8();
+        laptopId_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string laptop_id = 1;</code>
+     * @return The bytes for laptopId.
+     */
+    @Override
+    public com.google.protobuf.ByteString
+        getLaptopIdBytes() {
+      Object ref = laptopId_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (String) ref);
+        laptopId_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int RATED_COUNT_FIELD_NUMBER = 2;
+    private int ratedCount_;
+    /**
+     * <code>uint32 rated_count = 2;</code>
+     * @return The ratedCount.
+     */
+    @Override
+    public int getRatedCount() {
+      return ratedCount_;
+    }
+
+    public static final int AVERAGE_SCORE_FIELD_NUMBER = 3;
+    private double averageScore_;
+    /**
+     * <code>double average_score = 3;</code>
+     * @return The averageScore.
+     */
+    @Override
+    public double getAverageScore() {
+      return averageScore_;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(laptopId_)) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, laptopId_);
+      }
+      if (ratedCount_ != 0) {
+        output.writeUInt32(2, ratedCount_);
+      }
+      if (Double.doubleToRawLongBits(averageScore_) != 0) {
+        output.writeDouble(3, averageScore_);
+      }
+      unknownFields.writeTo(output);
+    }
+
+    @Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(laptopId_)) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, laptopId_);
+      }
+      if (ratedCount_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(2, ratedCount_);
+      }
+      if (Double.doubleToRawLongBits(averageScore_) != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeDoubleSize(3, averageScore_);
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @Override
+    public boolean equals(final Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof RateLaptopResponse)) {
+        return super.equals(obj);
+      }
+      RateLaptopResponse other = (RateLaptopResponse) obj;
+
+      if (!getLaptopId()
+          .equals(other.getLaptopId())) return false;
+      if (getRatedCount()
+          != other.getRatedCount()) return false;
+      if (Double.doubleToLongBits(getAverageScore())
+          != Double.doubleToLongBits(
+              other.getAverageScore())) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
+    }
+
+    @Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + LAPTOP_ID_FIELD_NUMBER;
+      hash = (53 * hash) + getLaptopId().hashCode();
+      hash = (37 * hash) + RATED_COUNT_FIELD_NUMBER;
+      hash = (53 * hash) + getRatedCount();
+      hash = (37 * hash) + AVERAGE_SCORE_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          Double.doubleToLongBits(getAverageScore()));
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static RateLaptopResponse parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static RateLaptopResponse parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static RateLaptopResponse parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static RateLaptopResponse parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static RateLaptopResponse parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static RateLaptopResponse parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static RateLaptopResponse parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static RateLaptopResponse parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static RateLaptopResponse parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static RateLaptopResponse parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static RateLaptopResponse parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static RateLaptopResponse parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(RateLaptopResponse prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @Override
+    protected Builder newBuilderForType(
+        BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code RateLaptopResponse}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:RateLaptopResponse)
+        RateLaptopResponseOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return LaptopServiceOuterClass.internal_static_RateLaptopResponse_descriptor;
+      }
+
+      @Override
+      protected FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return LaptopServiceOuterClass.internal_static_RateLaptopResponse_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                RateLaptopResponse.class, Builder.class);
+      }
+
+      // Construct using LaptopServiceOuterClass.RateLaptopResponse.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      @Override
+      public Builder clear() {
+        super.clear();
+        laptopId_ = "";
+
+        ratedCount_ = 0;
+
+        averageScore_ = 0D;
+
+        return this;
+      }
+
+      @Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return LaptopServiceOuterClass.internal_static_RateLaptopResponse_descriptor;
+      }
+
+      @Override
+      public RateLaptopResponse getDefaultInstanceForType() {
+        return RateLaptopResponse.getDefaultInstance();
+      }
+
+      @Override
+      public RateLaptopResponse build() {
+        RateLaptopResponse result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @Override
+      public RateLaptopResponse buildPartial() {
+        RateLaptopResponse result = new RateLaptopResponse(this);
+        result.laptopId_ = laptopId_;
+        result.ratedCount_ = ratedCount_;
+        result.averageScore_ = averageScore_;
+        onBuilt();
+        return result;
+      }
+
+      @Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return super.setField(field, value);
+      }
+      @Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof RateLaptopResponse) {
+          return mergeFrom((RateLaptopResponse)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(RateLaptopResponse other) {
+        if (other == RateLaptopResponse.getDefaultInstance()) return this;
+        if (!other.getLaptopId().isEmpty()) {
+          laptopId_ = other.laptopId_;
+          onChanged();
+        }
+        if (other.getRatedCount() != 0) {
+          setRatedCount(other.getRatedCount());
+        }
+        if (other.getAverageScore() != 0D) {
+          setAverageScore(other.getAverageScore());
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        RateLaptopResponse parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (RateLaptopResponse) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private Object laptopId_ = "";
+      /**
+       * <code>string laptop_id = 1;</code>
+       * @return The laptopId.
+       */
+      public String getLaptopId() {
+        Object ref = laptopId_;
+        if (!(ref instanceof String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          String s = bs.toStringUtf8();
+          laptopId_ = s;
+          return s;
+        } else {
+          return (String) ref;
+        }
+      }
+      /**
+       * <code>string laptop_id = 1;</code>
+       * @return The bytes for laptopId.
+       */
+      public com.google.protobuf.ByteString
+          getLaptopIdBytes() {
+        Object ref = laptopId_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (String) ref);
+          laptopId_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string laptop_id = 1;</code>
+       * @param value The laptopId to set.
+       * @return This builder for chaining.
+       */
+      public Builder setLaptopId(
+          String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        laptopId_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string laptop_id = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearLaptopId() {
+        
+        laptopId_ = getDefaultInstance().getLaptopId();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string laptop_id = 1;</code>
+       * @param value The bytes for laptopId to set.
+       * @return This builder for chaining.
+       */
+      public Builder setLaptopIdBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        laptopId_ = value;
+        onChanged();
+        return this;
+      }
+
+      private int ratedCount_ ;
+      /**
+       * <code>uint32 rated_count = 2;</code>
+       * @return The ratedCount.
+       */
+      @Override
+      public int getRatedCount() {
+        return ratedCount_;
+      }
+      /**
+       * <code>uint32 rated_count = 2;</code>
+       * @param value The ratedCount to set.
+       * @return This builder for chaining.
+       */
+      public Builder setRatedCount(int value) {
+        
+        ratedCount_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>uint32 rated_count = 2;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearRatedCount() {
+        
+        ratedCount_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private double averageScore_ ;
+      /**
+       * <code>double average_score = 3;</code>
+       * @return The averageScore.
+       */
+      @Override
+      public double getAverageScore() {
+        return averageScore_;
+      }
+      /**
+       * <code>double average_score = 3;</code>
+       * @param value The averageScore to set.
+       * @return This builder for chaining.
+       */
+      public Builder setAverageScore(double value) {
+        
+        averageScore_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>double average_score = 3;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearAverageScore() {
+        
+        averageScore_ = 0D;
+        onChanged();
+        return this;
+      }
+      @Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:RateLaptopResponse)
+    }
+
+    // @@protoc_insertion_point(class_scope:RateLaptopResponse)
+    private static final RateLaptopResponse DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new RateLaptopResponse();
+    }
+
+    public static RateLaptopResponse getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<RateLaptopResponse>
+        PARSER = new com.google.protobuf.AbstractParser<RateLaptopResponse>() {
+      @Override
+      public RateLaptopResponse parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new RateLaptopResponse(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<RateLaptopResponse> parser() {
+      return PARSER;
+    }
+
+    @Override
+    public com.google.protobuf.Parser<RateLaptopResponse> getParserForType() {
+      return PARSER;
+    }
+
+    @Override
+    public RateLaptopResponse getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
   public interface SearchLaptopRequestOrBuilder extends
       // @@protoc_insertion_point(interface_extends:SearchLaptopRequest)
       com.google.protobuf.MessageOrBuilder {
@@ -4695,6 +6075,16 @@ public final class LaptopServiceOuterClass {
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_UploadImageResponse_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_RateLaptopRequest_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_RateLaptopRequest_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_RateLaptopResponse_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_RateLaptopResponse_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_SearchLaptopRequest_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
@@ -4721,15 +6111,20 @@ public final class LaptopServiceOuterClass {
       "\022\024\n\nchunk_data\030\002 \001(\014H\000B\006\n\004data\"2\n\tImageI" +
       "nfo\022\021\n\tlaptop_id\030\001 \001(\t\022\022\n\nimage_type\030\002 \001" +
       "(\t\"/\n\023UploadImageResponse\022\n\n\002id\030\001 \001(\t\022\014\n" +
-      "\004size\030\002 \001(\r\".\n\023SearchLaptopRequest\022\027\n\006fi" +
-      "lter\030\001 \001(\0132\007.Filter\"/\n\024SearchLaptopRespo" +
-      "nse\022\027\n\006laptop\030\001 \001(\0132\007.Laptop2\315\001\n\rLaptopS" +
-      "ervice\022=\n\014createLaptop\022\024.CreateLaptopReq" +
-      "uest\032\025.CreateLaptopResponse\"\000\022?\n\014searchL" +
-      "aptop\022\024.SearchLaptopRequest\032\025.SearchLapt" +
-      "opResponse\"\0000\001\022<\n\013uploadImage\022\023.UploadIm" +
-      "ageRequest\032\024.UploadImageResponse\"\000(\001b\006pr" +
-      "oto3"
+      "\004size\030\002 \001(\r\"5\n\021RateLaptopRequest\022\021\n\tlapt" +
+      "op_id\030\001 \001(\t\022\r\n\005score\030\002 \001(\001\"S\n\022RateLaptop" +
+      "Response\022\021\n\tlaptop_id\030\001 \001(\t\022\023\n\013rated_cou" +
+      "nt\030\002 \001(\r\022\025\n\raverage_score\030\003 \001(\001\".\n\023Searc" +
+      "hLaptopRequest\022\027\n\006filter\030\001 \001(\0132\007.Filter\"" +
+      "/\n\024SearchLaptopResponse\022\027\n\006laptop\030\001 \001(\0132" +
+      "\007.Laptop2\212\002\n\rLaptopService\022=\n\014createLapt" +
+      "op\022\024.CreateLaptopRequest\032\025.CreateLaptopR" +
+      "esponse\"\000\022?\n\014searchLaptop\022\024.SearchLaptop" +
+      "Request\032\025.SearchLaptopResponse\"\0000\001\022<\n\013up" +
+      "loadImage\022\023.UploadImageRequest\032\024.UploadI" +
+      "mageResponse\"\000(\001\022;\n\nrateLaptop\022\022.RateLap" +
+      "topRequest\032\023.RateLaptopResponse\"\000(\0010\001b\006p" +
+      "roto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -4767,14 +6162,26 @@ public final class LaptopServiceOuterClass {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_UploadImageResponse_descriptor,
         new String[] { "Id", "Size", });
-    internal_static_SearchLaptopRequest_descriptor =
+    internal_static_RateLaptopRequest_descriptor =
       getDescriptor().getMessageTypes().get(5);
+    internal_static_RateLaptopRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_RateLaptopRequest_descriptor,
+        new String[] { "LaptopId", "Score", });
+    internal_static_RateLaptopResponse_descriptor =
+      getDescriptor().getMessageTypes().get(6);
+    internal_static_RateLaptopResponse_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_RateLaptopResponse_descriptor,
+        new String[] { "LaptopId", "RatedCount", "AverageScore", });
+    internal_static_SearchLaptopRequest_descriptor =
+      getDescriptor().getMessageTypes().get(7);
     internal_static_SearchLaptopRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_SearchLaptopRequest_descriptor,
         new String[] { "Filter", });
     internal_static_SearchLaptopResponse_descriptor =
-      getDescriptor().getMessageTypes().get(6);
+      getDescriptor().getMessageTypes().get(8);
     internal_static_SearchLaptopResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_SearchLaptopResponse_descriptor,

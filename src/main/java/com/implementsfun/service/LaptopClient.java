@@ -1,14 +1,13 @@
 package com.implementsfun.service;
 
 import com.google.protobuf.ByteString;
-import com.implementsfun.Generator;
-import com.implementsfun.protoj.FilterMessage;
-import com.implementsfun.protoj.FilterMessage.*;
-import com.implementsfun.protoj.LaptopMessage.*;
+import com.implementsfun.util.Generator;
+import com.implementsfun.protoj.FilterMessage.Filter;
+import com.implementsfun.protoj.LaptopMessage.Laptop;
 import com.implementsfun.protoj.LaptopServiceGrpc;
-import com.implementsfun.protoj.LaptopServiceGrpc.*;
+import com.implementsfun.protoj.LaptopServiceGrpc.LaptopServiceBlockingStub;
+import com.implementsfun.protoj.LaptopServiceGrpc.LaptopServiceStub;
 import com.implementsfun.protoj.LaptopServiceOuterClass.*;
-import com.implementsfun.protoj.MemoryMessage;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import io.grpc.Status;
@@ -17,6 +16,7 @@ import io.grpc.stub.StreamObserver;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.util.Collection;
 import java.util.Iterator;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
@@ -210,5 +210,11 @@ public class LaptopClient {
         if(!finishLatch.await(1,TimeUnit.MINUTES)){
             logger.warning("request cannot finish within 1 minute");
         }
+    }
+
+    public void rateLaptop(Collection laptopIds,Collection scores){
+        /**
+         * 博主的这里方法没有贴 得看youtube
+         */
     }
 }

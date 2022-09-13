@@ -3,10 +3,9 @@ package com.implementsfun;
 import com.implementsfun.protoj.LaptopMessage;
 import com.implementsfun.serializer.Serializer;
 
-import lombok.extern.slf4j.Slf4j;
+import com.implementsfun.util.Generator;
 import org.junit.Assert;
 import org.junit.Test;
-import org.slf4j.Logger;
 
 import java.io.IOException;
 

@@ -6,6 +6,7 @@ import com.implementsfun.protoj.LaptopServiceOuterClass.*;
 import com.implementsfun.service.InMemoryLaptopStore;
 import com.implementsfun.service.LaptopServer;
 import com.implementsfun.service.LaptopStore;
+import com.implementsfun.util.Generator;
 import io.grpc.ManagedChannel;
 import io.grpc.StatusRuntimeException;
 import io.grpc.inprocess.InProcessChannelBuilder;

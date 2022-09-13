@@ -1,4 +1,4 @@
-package com.implementsfun;
+package com.implementsfun.util;
 
 import java.time.Instant;
 import java.util.Random;
@@ -17,6 +17,17 @@ public class Generator {
 
     public Generator(){
         rand=new Random();
+    }
+
+    /**
+     * 外滩星巴克的人越来越多，人说话越来越本地化
+     * 下午3点去拿毕业证
+     * 中午吃点东西
+     * 有点想喝橙汁
+     * @return random int
+     */
+    public double initLaptopScore(){
+        return randomInt(1,10);
     }
 
     public CPU initCPU(){

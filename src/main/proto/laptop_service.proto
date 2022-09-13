@@ -39,6 +39,26 @@ message UploadImageResponse{
 }
 
 /**
+今天不仅要体检，拿毕业证，需要准备明天去YI入职，
+并且要带好相关都offer上的材料，
+除了这些还
+要看下专升本的群里，报名入口已经开放，
+时间是
+9月13（周二）今日 到 9月17日（周六）
+每天9点到22点（其中9月17日时间为早9点到晚8点）
+需要工作证明一个
+生成流水号和报考信息才算成功报名
+ */
+message RateLaptopRequest{
+  string laptop_id = 1;
+  double score = 2;
+}
+message RateLaptopResponse{
+  string laptop_id=1;
+  uint32 rated_count=2;
+  double average_score=3;
+}
+/**
 laptop相关服务
  */
 service LaptopService{
@@ -48,6 +68,7 @@ service LaptopService{
   rpc createLaptop(CreateLaptopRequest) returns (CreateLaptopResponse){};
   rpc searchLaptop(SearchLaptopRequest) returns (stream SearchLaptopResponse){};
   rpc uploadImage(stream UploadImageRequest) returns (UploadImageResponse){};
+  rpc rateLaptop(stream RateLaptopRequest) returns (stream RateLaptopResponse){};
 }
 
 message SearchLaptopRequest{
