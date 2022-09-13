@@ -1,13 +1,14 @@
 package com.implementsfun.service;
 
 import com.google.protobuf.ByteString;
-import com.implementsfun.util.Generator;
 import com.implementsfun.protoj.FilterMessage.Filter;
 import com.implementsfun.protoj.LaptopMessage.Laptop;
 import com.implementsfun.protoj.LaptopServiceGrpc;
 import com.implementsfun.protoj.LaptopServiceGrpc.LaptopServiceBlockingStub;
 import com.implementsfun.protoj.LaptopServiceGrpc.LaptopServiceStub;
 import com.implementsfun.protoj.LaptopServiceOuterClass.*;
+import com.implementsfun.protoj.MemoryMessage.Memory;
+import com.implementsfun.util.Generator;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import io.grpc.Status;
@@ -16,8 +17,8 @@ import io.grpc.stub.StreamObserver;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.util.Collection;
 import java.util.Iterator;
+import java.util.Scanner;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
@@ -65,6 +66,90 @@ public class LaptopClient {
        logger.info("laptop created with ID: "+response.getId());
     }
 
+    /**
+     * 测试创建laptop
+     * @param client
+     * @param generator
+     */
+    public static void testCreateLaptop(LaptopClient client,Generator generator){
+        Laptop laptop = generator.initLaptop();
+        client.createLaptop(laptop);
+    }
+
+    /**
+     * 测试查询laptop
+     * 不同的测试单独抽离出来 解耦
+     * @param client
+     * @param generator
+     */
+    public static void testSearchLaptop(LaptopClient client,Generator generator){
+            for (int i = 0; i < 10; i++) {
+                Laptop laptop = generator.initLaptop();
+                client.createLaptop(laptop);
+            }
+            Memory minRam = Memory.newBuilder()
+                    .setValue(8)
+                    .setUnit(Memory.Unit.GIGABYTE)
+                    .build();
+            Filter filter = Filter.newBuilder()
+                    .setMaxPriceUsd(3000)
+                    .setMinCpuCores(4)
+                    .setMinCpuGhz(2.5)
+                    .setMinRam(minRam)
+                    .build();
+            client.searchLaptop(filter);
+    }
+
+    /**
+     * 测试上传图片
+     * @param client
+     * @param generator
+     * @throws InterruptedException
+     */
+    public static void testUploadImage(LaptopClient client,Generator generator) throws InterruptedException {
+        Laptop laptop = generator.initLaptop();
+        client.createLaptop(laptop);
+        client.uploadImage(laptop.getId(),"tmp/laptop.png");
+    }
+
+    /**
+     * 测试电脑性能得分
+     * @param client
+     * @param generator
+     * @throws InterruptedException
+     */
+    public static void testRateLaptop(LaptopClient client,Generator generator) throws InterruptedException {
+       int n=3;
+       String[] laptopIDs = new String[n];
+       for (int i =0;i<n;i++){
+           Laptop laptop = generator.initLaptop();
+           laptopIDs[i]  = laptop.getId();
+           client.createLaptop(laptop);
+       }
+
+        Scanner scanner = new Scanner(System.in);
+        while(true){
+           /**
+            * 204斤，体检发现体重居然超过200
+            * 当兵之后体重有时飙升到这个数字
+            * 不过多加运动吧 会好起来到
+            */
+           logger.info("rate laptop {y/n} ?");
+           String answer = scanner.nextLine();
+           if(answer.toLowerCase().trim().equals("n")){
+               break;
+           }
+
+           double[] scores = new double[n];
+           for(int i=0;i<n;i++){
+               scores[i] = generator.initLaptopScore();
+           }
+
+           client.rateLaptop(laptopIDs,scores);
+       }
+
+    }
+
     public static void main(String[] args) throws InterruptedException {
         /**
          * 严格说来，0.0.0.0已经不是一个真正意义上的IP地址了。
@@ -75,27 +160,8 @@ public class LaptopClient {
          */
         LaptopClient client = new LaptopClient("0.0.0.0", 8080);
         Generator generator = new Generator();
-        //test search laptop (server streaming)
         try {
-//            for (int i = 0; i < 10; i++) {
-//                Laptop laptop = generator.initLaptop();
-//                client.createLaptop(laptop);
-//            }
-//            MemoryMessage.Memory minRam = MemoryMessage.Memory.newBuilder()
-//                    .setValue(8)
-//                    .setUnit(MemoryMessage.Memory.Unit.GIGABYTE)
-//                    .build();
-//            FilterMessage.Filter filter = FilterMessage.Filter.newBuilder()
-//                    .setMaxPriceUsd(3000)
-//                    .setMinCpuCores(4)
-//                    .setMinCpuGhz(2.5)
-//                    .setMinRam(minRam)
-//                    .build();
-//            client.searchLaptop(filter);
-        //test upload image (client streaming)
-            Laptop laptop = generator.initLaptop();
-            client.createLaptop(laptop);
-            client.uploadImage(laptop.getId(),"tmp/laptop.png");
+            testRateLaptop(client,generator);
         } finally {
             client.shutdown();
         }
@@ -212,9 +278,57 @@ public class LaptopClient {
         }
     }
 
-    public void rateLaptop(Collection laptopIds,Collection scores){
+    public void rateLaptop(String[] laptopIds,double[] scores) throws InterruptedException {
         /**
          * 博主的这里方法没有贴 得看youtube
          */
+        CountDownLatch finishLatch = new CountDownLatch(1);
+        StreamObserver<RateLaptopRequest> requestObserver = asyncStub.withDeadlineAfter(5, TimeUnit.SECONDS)
+                .rateLaptop(new StreamObserver<RateLaptopResponse>() {
+                    @Override
+                    public void onNext(RateLaptopResponse response) {
+                        logger.info("laptop rated: id = " + response.getLaptopId() +
+                                ", count = " + response.getRatedCount() +
+                                ", average = " + response.getAverageScore());
+                    }
+
+                    /**
+                     * 所以说 com.google.inject包下的接口具体都是什么作用
+                     * @param t
+                     */
+
+                    @Override
+                    public void onError(Throwable t) {
+                        logger.log(Level.SEVERE, "rate laptop failed: " + t.getMessage());
+                        finishLatch.countDown();
+                    }
+
+                    @Override
+                    public void onCompleted() {
+                        logger.info("rate laptop completed");
+                        finishLatch.countDown();
+                    }
+                });
+        int n = laptopIds.length;
+        logger.info("the laptopIds length is "+n);
+        try {
+            for(int i=0;i<n;i++){
+                RateLaptopRequest request = RateLaptopRequest.newBuilder()
+                        .setLaptopId(laptopIds[i])
+                        .setScore(scores[i])
+                        .build();
+                requestObserver.onNext(request);
+                logger.info("sent rate-laptop request: id = "+request.getLaptopId()+", score = "+request.getScore());
+            }
+        } catch (Exception e) {
+           logger.log(Level.SEVERE,"unexcepted error: "+e.getMessage());
+           requestObserver.onError(e);
+           return;
+        }
+
+        requestObserver.onCompleted();
+        if(!finishLatch.await(1,TimeUnit.MINUTES)){
+            logger.warning("request cannot finish within 1 minutes");
+        }
     }
 }

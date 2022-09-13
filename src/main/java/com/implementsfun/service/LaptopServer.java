@@ -25,6 +25,10 @@ public class LaptopServer {
     public LaptopServer(int port,LaptopStore store,ImageStore imageStore){
         this(ServerBuilder.forPort(port),port,store,imageStore);
     }
+    public LaptopServer(int port,LaptopStore store,ImageStore imageStore,RatingStore ratingStore){
+        this(ServerBuilder.forPort(port),port,store,imageStore,ratingStore);
+    }
+
 
     public LaptopServer(ServerBuilder serverBuilder,int port,LaptopStore store){
         this.port=port;
@@ -35,6 +39,12 @@ public class LaptopServer {
     public LaptopServer(ServerBuilder serverBuilder, int port, LaptopStore store, ImageStore imageStore) {
         this.port=port;
         LaptopService laptopService = new LaptopService(store,imageStore);
+        server = serverBuilder.addService(laptopService).build();
+    }
+
+    public LaptopServer(ServerBuilder serverBuilder, int port, LaptopStore store, ImageStore imageStore,RatingStore ratingStore) {
+        this.port=port;
+        LaptopService laptopService = new LaptopService(store,imageStore,ratingStore);
         server = serverBuilder.addService(laptopService).build();
     }
 
@@ -64,10 +74,22 @@ public class LaptopServer {
         }
     }
 
+    /**
+     * 今天下午被拉进了福特项目
+     * 人挺多的70号人
+     * 不知道具体福特是做什么项目
+     * 是否涉及到相关物联网呢
+     * 不过大多数情况还是传统到平台性质比较多吧
+     * 明天报道后再复习下微服务等
+     * @param args
+     * @throws InterruptedException
+     * @throws IOException
+     */
     public static void main(String[] args) throws InterruptedException, IOException {
         InMemoryLaptopStore laptopStore = new InMemoryLaptopStore();
         DiskImageStore imageStore = new DiskImageStore("img");
-        LaptopServer server = new LaptopServer(8080,laptopStore,imageStore);
+        InMemoryRatingStore ratingStore = new InMemoryRatingStore();
+        LaptopServer server = new LaptopServer(8080,laptopStore,imageStore,ratingStore);
         server.start();
         server.blackUnitShutdown();
     }

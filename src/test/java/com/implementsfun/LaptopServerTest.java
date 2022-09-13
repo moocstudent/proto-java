@@ -3,9 +3,7 @@ package com.implementsfun;
 import com.implementsfun.protoj.LaptopMessage.*;
 import com.implementsfun.protoj.LaptopServiceGrpc;
 import com.implementsfun.protoj.LaptopServiceOuterClass.*;
-import com.implementsfun.service.InMemoryLaptopStore;
-import com.implementsfun.service.LaptopServer;
-import com.implementsfun.service.LaptopStore;
+import com.implementsfun.service.*;
 import com.implementsfun.util.Generator;
 import io.grpc.ManagedChannel;
 import io.grpc.StatusRuntimeException;
@@ -42,7 +40,11 @@ public class LaptopServerTest {
 
     private LaptopStore store;
     private LaptopServer server;
+    private RatingStore ratingStore;
+    private ImageStore imageStore;
     private ManagedChannel channel;
+
+
 
     @Before
     public void setUp() throws IOException {
@@ -50,7 +52,9 @@ public class LaptopServerTest {
         InProcessServerBuilder serverBuilder=
                 InProcessServerBuilder.forName(serverName).directExecutor();
         store=new InMemoryLaptopStore();
-        server=new LaptopServer(serverBuilder,0,store);
+        imageStore = new DiskImageStore("img");
+        ratingStore = new InMemoryRatingStore();
+        server=new LaptopServer(serverBuilder,0,store,imageStore,ratingStore);
         server.start();
         channel = grpcCleanupRule.register(
                 InProcessChannelBuilder.forName(serverName).directExecutor().build()
